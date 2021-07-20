@@ -1,7 +1,6 @@
 const { Router } = require('express');
 
 const { authenticateJWT } = require('../utils/calls');
-
 const { getContact, postContact, deleteContact } = require('../services/contactService');
 
 const router = Router();

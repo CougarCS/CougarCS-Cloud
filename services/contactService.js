@@ -1,5 +1,4 @@
 const { AWS } = require('./awsService');
-
 const { Contact } = require('../utils/contactData');
 const { Validation } = require('../utils/validation');
 
