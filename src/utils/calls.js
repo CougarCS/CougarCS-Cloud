@@ -13,7 +13,24 @@ const authenticateJWT = async (req, res, next) => {
         await getAccessTokenSecret()
         .then(accessTokenSecret => {
             jwt.verify(token, accessTokenSecret, (err, accessKey) => {
-                if (err) return res.sendStatus(403);
+                if (err) {
+                    console.log('Failed to verify token.');
+                    return res.status(406).json({ message: 'Failed to verify token.' });
+                }
+
+                if (!('expires' in accessKey)) {
+                    console.log('Token does not include "expires" field. Out of date.');
+                    return res.status(401).json({ message: 'Token is out of date. Generate a new one.' });
+                }
+
+                const now = new Date();
+                const expires = new Date(accessKey.expires);
+
+                if (now < expires) {
+                    console.log('Token is expired.')
+                    return res.status(401).json({ message: 'Token is expired.' });
+                }
+
                 req.accessKey = accessKey;
                 console.log("===> Token validated! User =", accessKey.user)
                 next();
@@ -22,11 +39,11 @@ const authenticateJWT = async (req, res, next) => {
         .catch(err => {
             console.log('===> Unable to fetch access token secret.');
             console.log('===> Error =', err);
-            res.status(500).sendFile('/templates/500.html');
+            res.status(500).json({ message: 'Unable to fetch access token secret.' });
         });
 
     } else {
-        res.sendStatus(401);
+        res.status(401).json({ 'message': 'Authorization required.' });
     }
 };
 
