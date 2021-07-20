@@ -1,10 +1,10 @@
-# CougarCS API
+# CougarCS Cloud
 Authored by Nykolas Farhangi (nykolasfarhangi@gmail.com) for CougarCS <br>
-Last updated: 5/8/21
+Last updated: 7/20/21
 
 ## Description
 
-CougarCS API is a serverless Express REST API.
+CougarCS API is a serverless Express REST API that provides an interface for CougarCS Contact database.
 
 ## Usage
 
@@ -16,9 +16,11 @@ CougarCS API is a serverless Express REST API.
 
 ## Dependencies
 
-- node.js
+- Node.js
 - aws-sdk
 - express
 - aws-serverless-express
 - bcrypt
 - jsonwebtoken
+- compression
+- cors
