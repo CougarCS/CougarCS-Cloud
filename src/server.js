@@ -6,7 +6,7 @@ const APP_PORT = PORT;
 if (IN_LAMBDA) {
     const serverlessExpress = require('aws-serverless-express');
     const server = serverlessExpress.createServer(app);
-    exports.handler = (event, context) => serverlessExpress.proxy(server, event, context);
+    module.exports.handler = (event, context) => serverlessExpress.proxy(server, event, context);
 } else {
     app.listen(APP_PORT, () => {
         console.log('\n-- CougarCS API is NOT running on AWS Lambda');
