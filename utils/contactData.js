@@ -14,6 +14,7 @@ class Contact {
         this.transactionHistory = transactionHistory;
         this.membershipStart = membershipStart;
         this.membershipEnd = membershipEnd;
+        this.member = this.isMember();
     }
 
     isValid() { return Validation.PSID.test(this.psid) && Validation.EMAIL.test(this.email); }

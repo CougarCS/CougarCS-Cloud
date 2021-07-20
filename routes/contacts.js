@@ -10,14 +10,22 @@ const key = 'contacts';
 router.get(
     '/',
     async (req, res) => {
-        console.log('\nGET /contact');
+        console.log('\nGET /contacts');
         
         try {
-            const { contacts } = await getContacts();
+            await getContacts()
+            .then(contacts => {
+                console.log('Contacts successfully retrieved. Contacts:', contacts);
 
-            console.log('Contacts successfully retrieved. Contacts:', contacts);
+                const length = contacts.length;
 
-            return res.status(200).json(contact.json());
+                let memberCount = 0;
+                for (contact in contacts) {
+                    if (contact.member) memberCount += 1;
+                }
+
+                return res.status(200).json({ length: length, memberCount: memberCount, contacts: contacts });
+            });
         } catch (err) {
             console.error(
                 `${err.code || 500} - ${err.message} - ${req.originalUrl} - ${
