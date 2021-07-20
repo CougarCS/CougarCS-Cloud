@@ -37,7 +37,7 @@ router.post(
                                     console.log('===> Creating Access Token...')
 
                                     const now = new Date();
-                                    const expires = new Date(now.getFullYear(), now.getMonth(), now.getDay(), now.getHours(), now.getMinutes() + TOKEN_DURATION, now.getSeconds())
+                                    const expires = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + TOKEN_DURATION, now.getSeconds(), now.getMilliseconds())
 
                                     const accessToken = jwt.sign({
                                         accessKeyID: accessKeyID,
