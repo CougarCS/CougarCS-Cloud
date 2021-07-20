@@ -48,7 +48,7 @@ router.post(
                                 })
                                 .catch(err => {
                                     console.log('===> Unable to fetch Access Token Secret. Error:', err);
-                                    res.status(err.code).json({ message: `Unable to fetch Access Token Secret. Error: ${err}` } );
+                                    res.status(err.code).json({ message: `${err.message}. Unable to fetch Access Token Secret.` } );
                                 });
                         }
 
