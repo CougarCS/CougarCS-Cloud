@@ -4,7 +4,7 @@ Last updated: 7/20/21
 
 ## Description
 
-CougarCS API is a serverless Express REST API that provides an interface for CougarCS Contact database.
+CougarCS Cloud is a serverless Express REST API that provides an interface for CougarCS Contact database.
 
 ## Usage
 
