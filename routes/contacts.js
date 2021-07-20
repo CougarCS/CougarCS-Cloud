@@ -19,12 +19,16 @@ router.get(
 
                 const length = contacts.length;
 
+                let formattedContacts = [];
                 let memberCount = 0;
-                for (contact in contacts) {
-                    if (contact.member) memberCount += 1;
-                }
 
-                return res.status(200).json({ length: length, memberCount: memberCount, contacts: contacts });
+                contacts.forEach(contact => {
+                    const formattedContact = contact.json();
+                    formattedContacts.push(formattedContact);
+                    if (formattedContact['Membership Status']) memberCount += 1;
+                })
+
+                return res.status(200).json({ length: length, memberCount: memberCount, contacts: formattedContacts });
             });
         } catch (err) {
             console.error(

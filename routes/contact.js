@@ -133,7 +133,7 @@ router.get(
                     req.method
                 } - ${req.ip}`
             );
-            return res.status(500).json({ err, message: 'Unable to fetch contact.' });
+            return res.status(err.code).json({ message: err.message });
         }
     }
 )

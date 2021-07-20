@@ -1,6 +1,6 @@
 # CougarCS API Reference
 Authored by Nykolas Farhangi (nykolasfarhangi@gmail.com) for CougarCS <br>
-Last updated: 5/11/21
+Last updated: 7/20/21
 
 ## Base URL:
 https://pxgy8jxap6.execute-api.us-east-1.amazonaws.com/dev/
@@ -78,7 +78,7 @@ curl -XGET '{{ BASE_URL }}/contact/status?psid=#######&email=e@mail.com'
 **GET**
 * Description: Returns a list of all contacts
 * Authorization: Bearer Token Required
-* Response: { "size": int, "contacts": [ { \<Contact Object\> } ] }
+* Response: { "length": int, "memberCount": int, "contacts": [ { \<Contact Object\> } ] }
 ```
 curl -XGET -H 'Authorization: Bearer {{ ACCESS_TOKEN }}' '{{ BASE_URL }}/contacts'
 ```
