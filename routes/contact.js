@@ -115,7 +115,7 @@ router.get(
             await getContact({ psid: psid, email: email })
             .then(contact => {
                 const output = {
-                    'member-status': contact.isMember(),
+                    'Membership Status': contact.isMember(),
                     'PSID': contact.psid,
                     'Name': contact.getName(),
                     'Membership Start': contact.membershipStart,

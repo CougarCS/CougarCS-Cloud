@@ -26,7 +26,7 @@ const authenticateJWT = async (req, res, next) => {
                 const now = new Date();
                 const expires = new Date(accessKey.expires);
 
-                if (now < expires) {
+                if (expires < now) {
                     console.log('Token is expired.')
                     return res.status(401).json({ message: 'Token is expired.' });
                 }

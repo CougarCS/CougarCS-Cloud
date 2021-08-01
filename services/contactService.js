@@ -2,7 +2,7 @@ const { AWS } = require('./awsService');
 const { Contact } = require('../utils/contactData');
 const { Validation } = require('../utils/validation');
 
-var dynamodb = new AWS.DynamoDB();
+let dynamodb = new AWS.DynamoDB();
 
 const getContact = async ({ psid, email }) => {
     if (psid) psid = psid.trim();
