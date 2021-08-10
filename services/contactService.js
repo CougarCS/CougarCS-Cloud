@@ -70,6 +70,9 @@ const getContact = async ({ psid, email }) => {
 const postContact = async ({ psid, email, phoneNumber, firstName, lastName, shirtSize, transaction, membershipStart, membershipEnd }) => {
     if ( !Validation.PSID.test(psid) ) throw { 'code': 400, 'message': 'Invalid invocation of getContact: PSID is invalid!'};
 
+    console.log("Membership Start=", membershipStart);
+    console.log("Membership End=", membershipEnd);
+
     await getContact({ psid: psid })
     .then(async contact => {
         console.log('===> Contact Exists! Updating Contact...');
@@ -172,7 +175,7 @@ const postContact = async ({ psid, email, phoneNumber, firstName, lastName, shir
         const contact = new Contact(psid, email, phoneNumber, firstName, lastName, shirtSize, contactAdded, transactionHistory, membershipStart, membershipEnd);
         
         console.log( contact.json())
-        item = standardToDyno( contact.json() );
+        item = AWS.DynamoDB.Converter.marshall( contact.json() );
         console.log(item)
 
         const params = { TableName: 'CougarCS-Contacts', Item: item };

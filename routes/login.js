@@ -43,7 +43,10 @@ router.post(
                                         accessKeyID: accessKeyID,
                                         user: accessKey['User'],
                                         expires: expires.toUTCString() }, accessTokenSecret);
-                                    console.log('===> Access Token Created!')
+
+                                    console.log('===> Access Token Created!');
+                                    console.log(`===> User = ${accessKey['User']}`);
+
                                     res.status(200).send({ token: accessToken });
                                 })
                                 .catch(err => {
