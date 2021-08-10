@@ -68,7 +68,7 @@ const getContact = async ({ psid, email }) => {
 }
 
 const postContact = async ({ psid, email, phoneNumber, firstName, lastName, shirtSize, transaction, membershipStart, membershipEnd }) => {
-    if ( !Validation.PSID.test(psid) ) throw { 'code': 400, 'message': 'Invalid invocation of getContact: PSID is invalid!'};
+    if ( !Validation.PSID.test(psid) ) throw { 'code': 400, 'message': 'Invalid invocation of postContact: PSID is invalid!'};
 
     await getContact({ psid: psid })
     .then(async contact => {
@@ -171,9 +171,9 @@ const postContact = async ({ psid, email, phoneNumber, firstName, lastName, shir
 
         const contact = new Contact(psid, email, phoneNumber, firstName, lastName, shirtSize, contactAdded, transactionHistory, membershipStart, membershipEnd);
         
-        console.log('Contact =', contact.json());
+        console.log('===> Contact =', contact.json());
         item = standardToDyno( contact.json() );
-        console.log('Contact --> DynamoDB Form =', item);
+        console.log('===> Contact --> DynamoDB Form =', item);
 
         const params = { TableName: 'CougarCS-Contacts', Item: item };
         let request = dynamodb.putItem(params);
@@ -288,7 +288,7 @@ function standardToDyno(object, root=true) {
     else if (typeof object == 'object') {
         output = {}
         Object.keys(object).forEach(key => {
-            console.log(key)
+            // console.log(key)
             output[key] = standardToDyno(object[key], false)
         });
         if(!root) output = { M: output };
