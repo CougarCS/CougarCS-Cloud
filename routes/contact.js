@@ -57,8 +57,16 @@ router.post(
     authenticateJWT,
     async (req, res) => {
         console.log('\nPOST /contact');
+
+        console.log(req.body)
+        console.log(req.body.membershipStart);
+        console.log(req.body.membershipEnd);
     
         const { psid, email, phoneNumber, firstName, lastName, shirtSize, transaction, membershipStart, membershipEnd } = req.body;
+
+        console.log(membershipStart, membershipEnd);
+
+        console.log('==========================');
         
         await postContact({ psid, email, phoneNumber, firstName, lastName, shirtSize, transaction, membershipStart, membershipEnd })
         .then(() => {
