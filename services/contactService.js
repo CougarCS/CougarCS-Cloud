@@ -166,7 +166,8 @@ const postContact = async ({ psid, email, phoneNumber, firstName, lastName, shir
 
         if ( !(psid && email && firstName && lastName && transaction) ) throw { 'code': 400, 'message': 'Bad request to postContact. Missing one or more of the following required keys: psid, email, firstName, lastName, transaction.'};
 
-        contactAdded = getFormattedDate( new Date() );
+        contactAdded = new Date().toLocaleDateString();
+
         transactionHistory = [ transaction ];
 
         const contact = new Contact(psid, email, phoneNumber, firstName, lastName, shirtSize, contactAdded, transactionHistory, membershipStart, membershipEnd);
